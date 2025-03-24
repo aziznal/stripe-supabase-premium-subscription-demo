@@ -8,14 +8,12 @@ import {
 import { cn } from "@/lib/client/utils";
 import { useGetUserInfoQuery } from "../queries";
 import { LogoutButton } from "@/modules/auth/components/LogoutButton";
-import {
-  LucideUser,
-  LucideUser2
-} from "lucide-react";
+import { LucideUser, LucideUser2 } from "lucide-react";
 import { Spinner } from "@/lib/client/components/Spinner";
 import { Separator } from "@/lib/client/components/ui/separator";
 import Link from "next/link";
 import { useState } from "react";
+import { PremiumButton } from "@/modules/subscribe/components/PremiumButton";
 
 export const UserDropdown: React.FC<{ className?: string }> = (props) => {
   const userInfoQuery = useGetUserInfoQuery();
@@ -50,6 +48,8 @@ export const UserDropdown: React.FC<{ className?: string }> = (props) => {
         <span className="text-muted-foreground mb-3">
           {userInfoQuery.data?.email}
         </span>
+
+        <PremiumButton className="mb-4" />
 
         <Separator className="mb-3" />
 
