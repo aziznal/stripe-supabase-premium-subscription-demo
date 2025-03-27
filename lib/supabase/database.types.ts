@@ -34,16 +34,90 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      user: {
+        Row: {
+          user_full_name: string
+          user_id: string
+        }
+        Insert: {
+          user_full_name: string
+          user_id: string
+        }
+        Update: {
+          user_full_name?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_user_id_users_id_fk"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users_view"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_premium_action_usage: {
+        Row: {
+          premium_usage_user_id: string
+        }
+        Insert: {
+          premium_usage_user_id: string
+        }
+        Update: {
+          premium_usage_user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_premium_action_usage_premium_usage_user_id_user_user_id_fk"
+            columns: ["premium_usage_user_id"]
+            isOneToOne: true
+            referencedRelation: "user"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
+      user_subscriptions: {
+        Row: {
+          subscription_user_id: string
+          tier: Database["public"]["Enums"]["subscription_tier"]
+        }
+        Insert: {
+          subscription_user_id: string
+          tier: Database["public"]["Enums"]["subscription_tier"]
+        }
+        Update: {
+          subscription_user_id?: string
+          tier?: Database["public"]["Enums"]["subscription_tier"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_subscriptions_subscription_user_id_user_user_id_fk"
+            columns: ["subscription_user_id"]
+            isOneToOne: true
+            referencedRelation: "user"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
     }
     Views: {
-      [_ in never]: never
+      users_view: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          full_name: string | null
+          id: string | null
+          tier: Database["public"]["Enums"]["subscription_tier"] | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      subscription_tier: "basic" | "standard" | "premium"
     }
     CompositeTypes: {
       [_ in never]: never
