@@ -5,7 +5,7 @@ import { LucideCheck, LucideGem, LucideX } from "lucide-react";
 export const PricingPlans: React.FC<{ className?: string }> = (props) => {
   return (
     <div
-      className={cn(props.className, "flex items-center justify-center gap-12")}
+      className={cn(props.className, "flex flex-col lg:flex-row items-center justify-center gap-12")}
     >
       <Plan
         title="Basic"
@@ -42,7 +42,7 @@ export const PricingPlans: React.FC<{ className?: string }> = (props) => {
           </PlanPoints>
         }
         classNames={{
-          base: "-mt-12 border-lime-400",
+          base: "lg:-mt-12 border-lime-400",
         }}
       />
 
@@ -129,6 +129,7 @@ const PlanPoints: React.FC<{
     </div>
   );
 };
+
 const PlanPoint: React.FC<{
   className?: string;
   children: React.ReactNode;
